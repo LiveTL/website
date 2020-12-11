@@ -1,18 +1,24 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-container>
+      <h1>LiveTL</h1>
+
+      <p>info about livetl goes here</p>
+
+      <div v-if="getUser !== null">
+        <span>Logged in as:n {{getUser.email}}</span>
+      </div>
+    </v-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  computed: {
+    getUser() {
+      return this.$store.getters.getUser;
+    }
   }
-}
+};
 </script>
