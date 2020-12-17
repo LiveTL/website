@@ -24,12 +24,13 @@
             <v-col v-else sm="2"/>
 
             <v-col sm="4">
-              <v-text-field single-line prepend-inner-icon="mdi-magnify" hide-details outlined/>
+              <v-text-field v-model="searchText" single-line prepend-inner-icon="mdi-magnify" hide-details outlined
+                            clearable/>
             </v-col>
 
             <v-col sm="2">
-              <v-select :items="languages" item-text="display" item-value="code" label="Language" hide-details
-                        outlined/>
+              <v-select :items="languages" item-text="display" item-value="code" v-model="filterLang" label="Language"
+                        hide-details outlined/>
             </v-col>
           </v-row>
         </v-col>
@@ -44,7 +45,7 @@
       <v-row justify="center">
         <v-col md="8">
           <v-list two-line>
-            <v-list-item v-for="translator in translators" :key="translator.email">
+            <v-list-item v-for="translator in translatorFilter" :key="translator.email">
               <v-list-item-avatar>
                 <v-avatar color="primary" size="40">
                   <span v-text="getInitials(translator.name)"/>
@@ -61,7 +62,6 @@
 
               <v-list-item-action-text>
                 <v-chip v-text="translator.langs.join(', ').toUpperCase()"></v-chip>
-
               </v-list-item-action-text>
             </v-list-item>
           </v-list>
@@ -80,11 +80,22 @@ export default {
     isLoggedIn() {
       return this.$store.getters.getUser !== null;
     },
-    translators() {
-      return this.$store.getters.getTranslators;
-    },
     user() {
       return this.$store.getters.getUser;
+    },
+    translatorFilter() {
+      if (this.searchText === '' && this.filterLang === 'all') {
+        return this.$store.getters.getTranslators;
+      }
+
+      return this.$store.getters.getTranslators.filter(tl => {
+        if (
+          tl.name.toLowerCase().includes(this.searchText) &&
+          (tl.langs.includes(this.filterLang) || this.filterLang === 'all')
+        ) {
+          return tl;
+        }
+      });
     }
   },
   methods: {
@@ -104,6 +115,8 @@ export default {
     return {
       loading: true,
       translator: null,
+      searchText: '',
+      filterLang: 'all',
       languages: [
         {
           code: 'all',
@@ -132,6 +145,10 @@ export default {
         {
           code: 'cn',
           display: 'Chinese (中文)'
+        },
+        {
+          code: 'ru',
+          display: 'Russian (русский)'
         }
       ]
     };
@@ -141,8 +158,6 @@ export default {
       this.loading = true;
 
       for (const change of res.docChanges()) {
-        console.log('something changed');
-
         if (change.type === 'added') {
           this.$store.commit('addTranslator', {
             id: change.doc.id,
