@@ -18,6 +18,11 @@ const routes = [
     path: '/applications',
     name: 'Verified Translator Applications',
     component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
+  },
+  {
+    path: '/sign-in-error',
+    name: 'Sign In Error',
+    component: () => import('@/views/SignInError')
   }
 ];
 

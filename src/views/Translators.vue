@@ -1,27 +1,12 @@
 <template>
   <div class="Apply">
     <v-container>
-      <div v-if="loading">
-        <v-progress-linear indeterminate/>
-      </div>
-
-      <v-row align="center" justify="center" v-else>
+      <v-row align="center" justify="center">
         <v-col md="8">
           <v-row align="center">
             <v-col sm="4">
               <h1>Registered Translators</h1>
             </v-col>
-
-            <v-col v-if="isLoggedIn" order="10" sm="2" class="text-right">
-              <v-btn v-if="getUserAsTranslator(user.email).type === 'registered'" to="/apply" color="success"
-                     height="56px">Apply
-              </v-btn>
-              <v-btn v-else-if="getUserAsTranslator(user.email).type !== 'verified'" color="success" height="56px">
-                Register
-              </v-btn>
-            </v-col>
-
-            <v-col v-else sm="2"/>
 
             <v-col sm="4">
               <v-text-field v-model="searchText" single-line prepend-inner-icon="mdi-magnify" hide-details outlined
@@ -32,6 +17,20 @@
               <v-select :items="languages" item-text="display" item-value="code" v-model="filterLang" label="Language"
                         hide-details outlined/>
             </v-col>
+
+            <v-col v-if="isLoggedIn && !loading && userAsTranslator() !== undefined" order="10" sm="2"
+                   class="text-right">
+              <v-btn v-if="userAsTranslator().type === 'user'" color="success" @click="dialog.show = true"
+                     height="56px">
+                Register
+              </v-btn>
+
+              <!--              <v-btn v-else-if="userAsTranslator().type === 'registered'" to="/apply" color="success" height="56px">-->
+              <!--                Get Verified-->
+              <!--              </v-btn>-->
+            </v-col>
+
+            <v-col v-else sm="2"/>
           </v-row>
         </v-col>
       </v-row>
@@ -43,9 +42,13 @@
       </v-row>
 
       <v-row justify="center">
-        <v-col md="8">
+        <v-col md="8" v-if="loading">
+          <v-progress-linear indeterminate/>
+        </v-col>
+
+        <v-col md="8" v-else-if="countRegisteredTranslators() !== 0">
           <v-list two-line>
-            <v-list-item v-for="translator in translatorFilter" :key="translator.email">
+            <v-list-item v-for="translator in filterTranslators()" :key="translator.email">
               <v-list-item-avatar>
                 <v-avatar color="primary" size="40">
                   <span v-text="getInitials(translator.name)"/>
@@ -66,8 +69,45 @@
             </v-list-item>
           </v-list>
         </v-col>
+
+        <v-col md="8" v-else>
+          <h3 class="error--text">No translators are registered!</h3>
+        </v-col>
       </v-row>
     </v-container>
+
+    <v-row justify="end">
+      <v-dialog v-model="dialog.show" scrollable max-width="30%">
+        <v-card>
+          <v-card-title>Select Languages</v-card-title>
+          <v-card-subtitle>Which languages you know and can translate to/from</v-card-subtitle>
+
+          <v-divider/>
+
+          <v-card-text style="height: 300px">
+            <div v-for="language in languages.slice(1)" :key="language.code">
+              <v-checkbox v-model="dialog.selectedLanguages" :label="language.display" :value="language.code"
+                          hide-details/>
+            </div>
+          </v-card-text>
+
+          <v-divider/>
+
+          <v-card-actions>
+            <v-spacer/>
+            <v-btn color="success" text @click="register()">Register</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+
+    <v-snackbar v-model="errorSnackbar" color="error" right outlined>
+      Please select at least one language!
+    </v-snackbar>
+
+    <v-snackbar v-model="successSnackbar" color="success" right outlined>
+      Successfully registered as translator!
+    </v-snackbar>
   </div>
 </template>
 
@@ -82,20 +122,6 @@ export default {
     },
     user() {
       return this.$store.getters.getUser;
-    },
-    translatorFilter() {
-      if (this.searchText === '' && this.filterLang === 'all') {
-        return this.$store.getters.getTranslators;
-      }
-
-      return this.$store.getters.getTranslators.filter(tl => {
-        if (
-          tl.name.toLowerCase().includes(this.searchText) &&
-          (tl.langs.includes(this.filterLang) || this.filterLang === 'all')
-        ) {
-          return tl;
-        }
-      });
     }
   },
   methods: {
@@ -105,10 +131,48 @@ export default {
       return (names[0].substring(0, 1) + names[names.length - 1].substring(0, 1)).toUpperCase();
     },
     userMatches(email) {
-      return this.$store.getters.getUser.email === email;
+      const user = this.user;
+      if (user === null) {
+        return false;
+      }
+
+      return user.email === email;
     },
-    getUserAsTranslator(email) {
-      return this.$store.getters.getTranslators.find(trans => trans.email === email);
+    userAsTranslator() {
+      return this.$store.getters.getUsers.find(user => user.email === this.user.email);
+    },
+    countRegisteredTranslators() {
+      return this.$store.getters.getUsers.filter(tl => {
+        if (tl.type !== 'user') {
+          return tl;
+        }
+      }).length;
+    },
+    filterTranslators() {
+      return this.$store.getters.getUsers.filter(tl => {
+        if (
+          tl.type !== 'user' &&
+          tl.name.toLowerCase().includes(this.searchText) &&
+          (tl.langs.includes(this.filterLang) || this.filterLang === 'all')
+        ) {
+          return tl;
+        }
+      });
+    },
+    async register() {
+      if (this.dialog.selectedLanguages.length < 1) {
+        this.errorSnackbar = true;
+        return;
+      }
+
+      await database.collection('translators').doc(this.user.uid).update({
+        langs: this.dialog.selectedLanguages,
+        type: 'registered'
+      });
+
+      this.errorSnackbar = false;
+      this.successSnackbar = true;
+      this.dialog.show = false;
     }
   },
   data: () => {
@@ -117,6 +181,12 @@ export default {
       translator: null,
       searchText: '',
       filterLang: 'all',
+      dialog: {
+        show: false,
+        selectedLanguages: []
+      },
+      errorSnackbar: false,
+      successSnackbar: false,
       languages: [
         {
           code: 'all',
@@ -159,17 +229,17 @@ export default {
 
       for (const change of res.docChanges()) {
         if (change.type === 'added') {
-          this.$store.commit('addTranslator', {
+          this.$store.commit('addUser', {
             id: change.doc.id,
             ...change.doc.data()
           });
         } else if (change.type === 'modified') {
-          this.$store.commit('updateTranslator', {
+          this.$store.commit('updateUser', {
             id: change.doc.id,
             ...change.doc.data()
           });
         } else if (change.type === 'removed') {
-          this.$store.commit('removeTranslator', change.doc.id);
+          this.$store.commit('removeUser', change.doc.id);
         }
       }
 
@@ -178,7 +248,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>

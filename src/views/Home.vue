@@ -6,7 +6,7 @@
       <p>info about livetl goes here</p>
 
       <div v-if="getUser !== null">
-        <span>Logged in as:n {{getUser.email}}</span>
+        <span>Logged in as: {{getUser.email}}</span>
       </div>
     </v-container>
   </div>

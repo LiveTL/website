@@ -6,32 +6,32 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     currentUser: null,
-    translators: []
+    users: []
   },
   mutations: {
     setCurrentUser(state, val) {
       state.currentUser = val;
     },
-    addTranslator(state, val) {
+    addUser(state, val) {
       // check to see if the translator already exists in the store
       let match = false;
-      for (const translator of state.translators) {
+      for (const translator of state.users) {
         if (translator.id === val.id) {
           match = true;
         }
       }
 
       if (match === false) {
-        state.translators.push(val);
+        state.users.push(val);
       }
     },
-    removeTranslator(state, val) {
-      const index = state.translators.findIndex(translator => translator.id === val);
-      state.translators = state.translators.splice(index, index + 1);
+    removeUser(state, val) {
+      const index = state.users.findIndex(translator => translator.id === val);
+      state.users = state.users.splice(index, index + 1);
     },
-    updateTranslator(state, val) {
-      const index = state.translators.findIndex(translator => translator.id === val.id);
-      state.translators[index] = val;
+    updateUser(state, val) {
+      const index = state.users.findIndex(translator => translator.id === val.id);
+      state.users[index] = val;
     }
   },
   actions: {},
@@ -40,8 +40,8 @@ export default new Vuex.Store({
     getUser(state) {
       return state.currentUser;
     },
-    getTranslators(state) {
-      return state.translators;
+    getUsers(state) {
+      return state.users;
     }
   }
 });

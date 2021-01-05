@@ -7,7 +7,7 @@
 
     <v-btn to="/" depressed>Home</v-btn>
     <v-btn to="/translators" depressed>Registered Translators</v-btn>
-    <v-btn v-if="isLoggedIn" to="/applications" depressed>Verified Translator Applications</v-btn>
+    <v-btn v-if="admin" to="/applications" depressed>Verified Translator Applications</v-btn>
 
     <v-spacer/>
 
@@ -28,25 +28,63 @@
 </template>
 
 <script>
-import { auth, firebase } from '@/firebase';
+import { auth, database, firebase } from '@/firebase';
 
 const authProvider = new firebase.auth.GoogleAuthProvider();
 authProvider.addScope('https://www.googleapis.com/auth/youtube.readonly');
 
 export default {
   name: 'Navbar',
+  data: () => {
+    return {
+      admin: false
+    };
+  },
   computed: {
     isLoggedIn() {
       return this.$store.getters.getUser !== null;
     }
   },
   methods: {
-    login: () => auth.signInWithPopup(authProvider).catch(error => console.log(error)),
+    login() {
+      auth.signInWithPopup(authProvider).then(async authRes => {
+        const request = {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${authRes.credential.accessToken}`
+          }
+        };
+
+        const apiRes = await fetch('https://youtube.googleapis.com/youtube/v3/channels?mine=true', request);
+        const json = await apiRes.json();
+        if (apiRes.ok === false || json.pageInfo.totalResults === 0) {
+          await this.$router.push('sign-in-error');
+          return;
+        }
+
+        const translatorsRef = database.collection('translators');
+        const userDocRef = translatorsRef.doc(authRes.user.uid);
+
+        if ((await userDocRef.get()).exists === false) {
+          await userDocRef.set({
+            email: authRes.user.email,
+            name: authRes.user.displayName,
+            channel: json.items[0].id,
+            type: 'user'
+          });
+        }
+      }).catch(error => console.error(error));
+    },
     logout: () => auth.signOut().catch(error => console.log(error))
+  },
+  created() {
+    if (this.isLoggedIn === false) {
+      this.admin = false;
+      return;
+    }
+    database.collection('admins').where('email', '==', this.$store.getters.getUser.email).get().then(res => {
+      this.admin = res.empty === false;
+    });
   }
 };
 </script>
-
-<style scoped>
-
-</style>
