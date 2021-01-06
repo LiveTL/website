@@ -10,14 +10,9 @@
       <h2>Download</h2>
       <v-row>
         <v-col sm="3">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <a> <!-- TODO href to play store link -->
-                <v-img src="@/assets/install-android.png" v-bind="attrs" v-on="on"/>
-              </a>
-            </template>
-            <span>Coming Soon&#8482;!</span>
-          </v-tooltip>
+          <a href="https://play.google.com/store/apps/details?id=com.livetl.android">
+            <v-img src="@/assets/install-android.png" v-bind="attrs" v-on="on"/>
+          </a>
         </v-col>
 
         <v-col sm="3">
