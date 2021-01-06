@@ -51,7 +51,8 @@
             <v-list-item v-for="translator in filterTranslators()" :key="translator.email">
               <v-list-item-avatar>
                 <v-avatar color="primary" size="40">
-                  <span v-text="getInitials(translator.name)"/>
+                  <img v-if="translator.picture" :src="translator.picture" alt="pfp">
+                  <span v-else v-text="getInitials(translator.name)"/>
                 </v-avatar>
               </v-list-item-avatar>
 

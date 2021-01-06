@@ -68,7 +68,14 @@ export default {
             email: authRes.user.email,
             name: authRes.user.displayName,
             channel: json.items[0].id,
+            picture: authRes.user.photoURL,
             type: 'user'
+          });
+        } else {
+          // update any information that can change
+          await userDocRef.update({
+            name: authRes.user.displayName,
+            picture: authRes.user.photoURL
           });
         }
       }).catch(error => console.error(error));
