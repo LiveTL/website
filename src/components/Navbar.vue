@@ -80,7 +80,7 @@ export default {
         }
       }).catch(error => console.error(error));
     },
-    logout: () => auth.signOut().catch(error => console.log(error))
+    logout: () => auth.signOut().catch(error => console.error(error))
   },
   created() {
     if (this.isLoggedIn === false) {
