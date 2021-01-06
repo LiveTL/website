@@ -60,7 +60,6 @@
                   <span v-text="translator.name"/>
                   <span class="text--disabled pa-2" v-if="userMatches(translator.email)">(you)</span>
                 </v-list-item-title>
-                <v-list-item-subtitle v-text="translator.email"/>
               </v-list-item-content>
 
               <v-list-item-action-text>

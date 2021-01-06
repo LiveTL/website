@@ -2,19 +2,52 @@
   <div class="home">
     <v-container>
       <h1>LiveTL</h1>
+      <h3>Get live translations for YouTube streams, crowdsourced from multilingual viewers!</h3>
 
-      <p>info about livetl goes here</p>
+      <br/>
+      <br/>
 
-      <div v-if="getUser !== null">
-        <span>Logged in as: {{getUser.email}}</span>
-      </div>
+      <h2>Download</h2>
+      <v-row>
+        <v-col sm="3">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <a @click="snackbar = true"> <!-- TODO href to play store link -->
+                <v-img src="@/assets/install-android.png" v-bind="attrs" v-on="on"/>
+              </a>
+            </template>
+            <span>Coming Soon&#8482;!</span>
+          </v-tooltip>
+        </v-col>
+
+        <v-col sm="3">
+          <a href="https://chrome.google.com/webstore/detail/livetl-live-translations/moicohcfhhbmmngneghfjfjpdobmmnlg">
+            <v-img src="@/assets/install-chrome.png"/>
+          </a>
+        </v-col>
+
+        <v-col sm="3">
+          <a href="https://addons.mozilla.org/en-US/firefox/addon/livetl/">
+            <v-img src="@/assets/install-firefox.png"/>
+          </a>
+        </v-col>
+      </v-row>
     </v-container>
+
+    <v-snackbar v-model="snackbar" outlined color="primary">
+      Coming Soon&#8482;!
+    </v-snackbar>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
+  data: () => {
+    return {
+      snackbar: false
+    };
+  },
   computed: {
     getUser() {
       return this.$store.getters.getUser;

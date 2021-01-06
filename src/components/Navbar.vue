@@ -62,9 +62,7 @@ export default {
           return;
         }
 
-        const translatorsRef = database.collection('translators');
-        const userDocRef = translatorsRef.doc(authRes.user.uid);
-
+        const userDocRef = database.collection('translators').doc(authRes.user.uid);
         if ((await userDocRef.get()).exists === false) {
           await userDocRef.set({
             email: authRes.user.email,
