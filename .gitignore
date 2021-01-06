@@ -2,7 +2,6 @@
 node_modules
 /dist
 
-
 # local env files
 .env.local
 .env.*.local
@@ -23,3 +22,6 @@ pnpm-debug.log*
 *.sw?
 
 .firebase/
+
+# I really don't care about the features this provides
+package-lock.json
