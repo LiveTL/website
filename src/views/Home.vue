@@ -12,7 +12,7 @@
         <v-col sm="3">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-              <a @click="snackbar = true"> <!-- TODO href to play store link -->
+              <a> <!-- TODO href to play store link -->
                 <v-img src="@/assets/install-android.png" v-bind="attrs" v-on="on"/>
               </a>
             </template>
@@ -33,21 +33,12 @@
         </v-col>
       </v-row>
     </v-container>
-
-    <v-snackbar v-model="snackbar" outlined color="primary">
-      Coming Soon&#8482;!
-    </v-snackbar>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  data: () => {
-    return {
-      snackbar: false
-    };
-  },
   computed: {
     getUser() {
       return this.$store.getters.getUser;
