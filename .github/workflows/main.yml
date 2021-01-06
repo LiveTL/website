@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '10.x'
       - name: build
-        run: npm run build
+        run: npm install && npm run build
       - name: deploy
         uses: w9jds/firebase-action@v2.0.0
         with: 
