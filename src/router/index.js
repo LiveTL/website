@@ -23,6 +23,11 @@ const routes = [
     path: '/sign-in-error',
     name: 'Sign In Error',
     component: () => import('@/views/SignInError')
+  },
+  {
+    path: '/ios',
+    name: 'iOS',
+    component: () => import('@/views/IOS.vue')
   }
 ];
 
