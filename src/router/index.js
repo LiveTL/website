@@ -25,7 +25,7 @@ const routes = [
     component: () => import('@/views/SignInError')
   },
   {
-    path: '/ios',
+    path: '/ios-note',
     name: 'iOS',
     component: () => import('@/views/IOS.vue')
   }
