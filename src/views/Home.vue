@@ -1,37 +1,36 @@
 <template>
   <div class="home">
     <v-container>
-      <h1>LiveTL</h1>
-      <h3>Get live translations for YouTube streams, crowdsourced from multilingual viewers!</h3>
+      <v-row justify="center">
+        <h1>LiveTL</h1>
+      </v-row>
+
+      <v-row justify="center">
+        <h3>Get live translations for YouTube streams, crowdsourced from multilingual viewers!</h3>
+      </v-row>
 
       <br/>
       <br/>
 
-      <h2>Download</h2>
-      <v-row>
-        <v-col sm="3">
-          <a href="https://play.google.com/store/apps/details?id=com.livetl.android">
-            <v-img src="@/assets/store-images/install-android.png"/>
-          </a>
-        </v-col>
+      <v-row justify="center">
+        <h2>Download</h2>
+      </v-row>
 
-        <v-col sm="3">
-          <a href="https://chrome.google.com/webstore/detail/livetl-live-translations/moicohcfhhbmmngneghfjfjpdobmmnlg">
-            <v-img src="@/assets/store-images/install-chrome.png"/>
-          </a>
-        </v-col>
-
-        <v-col sm="3">
-          <a href="https://addons.mozilla.org/en-US/firefox/addon/livetl/">
-            <v-img src="@/assets/store-images/install-firefox.png"/>
+      <v-row justify="center">
+        <v-col xs="2" sm="4" md="3" lg="2" v-for="store in stores" :key="store.link">
+          <a :href="store.link" target="_blank">
+            <v-img :src="getImgUrl(store.image)"/>
           </a>
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col md="8">
-          <v-carousel v-model="showcase">
-            <v-carousel-item v-for="image in images" :key="image" :src="image" />
+      <v-row justify="center">
+      </v-row>
+
+      <v-row justify="center">
+        <v-col md="9" lg="8">
+          <v-carousel v-model="showcase" hide-delimiters>
+            <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="getImgUrl(image)"/>
           </v-carousel>
         </v-col>
       </v-row>
@@ -45,20 +44,38 @@ export default {
   data: () => {
     return {
       showcase: 0,
-      // FIXME these don't work like this apparently
-      images: [
-        './assets/showcase-images/cover.png',
-        './assets/showcase-images/holotools-launcher.png',
-        './assets/showcase-images/launcher-buttons.png',
-        './assets/showcase-images/launcher-ui.png',
-        './assets/showcase-images/options.png',
-        './assets/showcase-images/popout.png'
+      showcaseImages: [
+        'showcase-images/cover.png',
+        'showcase-images/holotools-launcher.png',
+        'showcase-images/launcher-buttons.png',
+        'showcase-images/options.png',
+        'showcase-images/popout.png'
+      ],
+      stores: [
+        {
+          link: 'https://play.google.com/store/apps/details?id=com.livetl.android',
+          image: 'store-images/install-android.png'
+        },
+        {
+          link: 'https://chrome.google.com/webstore/detail/livetl-live-translations/moicohcfhhbmmngneghfjfjpdobmmnlg',
+          image: 'store-images/install-chrome.png'
+        },
+        {
+          link: 'https://addons.mozilla.org/en-US/firefox/addon/livetl/',
+          image: 'store-images/install-firefox.png'
+        }
       ]
     };
   },
   computed: {
     getUser() {
       return this.$store.getters.getUser;
+    }
+  },
+  methods: {
+    getImgUrl(img) {
+      // https://stackoverflow.com/a/47480286
+      return require(`@/assets/${img}`);
     }
   }
 };
