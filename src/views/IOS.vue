@@ -21,7 +21,7 @@
       <v-row>
         <v-col md="6" offset-md="2">
           <h3 class="font-weight-regular">
-            The cost of the Apple Developer Program is also a big factor, as it would cost us $100 USD (per year!) to
+            The cost of the Apple Developer Program is also a big factor, as it would cost us $99 USD (per year!) to
             join. In the future, we may start accepting donations, but for now, we are not able to pay for it.
           </h3>
         </v-col>
@@ -49,7 +49,3 @@ export default {
   name: 'ios'
 };
 </script>
-
-<style scoped>
-
-</style>
