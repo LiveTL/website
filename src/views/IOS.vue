@@ -11,7 +11,7 @@
         <v-col md="6" offset-md="2">
           <h3 class="font-weight-regular">
             The method we used to bring LiveTL to Android, while possible on iOS, is never going to be allowed by Apple
-            to be released on the App Store. <br/>
+            to be released on the App Store. <br />
             Because of this we would have to write an entire app from scratch, something that no one on the development
             team currently wants to, or has time to do.
           </h3>
@@ -34,9 +34,8 @@
             out of the question, just out of reach with our current means. If you are a mobile developer (doesn't
             necessarily have to be iOS specific, but something that supports iOS, such as <a
             href="https://dotnet.microsoft.com/apps/xamarin">Xamarin</a> or <a href="https://flutter.dev/">Flutter</a>)
-            or you are able to help us out with the Apple Developer Program, please join us on <a
-            href="https://discord.gg/uJrV3tmthg">Discord</a> and let us know! We'd be happy to have
-            you join the team!
+            or you are able to help us out with the Apple Developer Program, please join us on our
+            <discord-server-link /> and let us know! We'd be happy to have you join the team!
           </h3>
         </v-col>
       </v-row>
@@ -45,7 +44,10 @@
 </template>
 
 <script>
+import DiscordServerLink from '../components/DiscordServerLink';
+
 export default {
-  name: 'ios'
+  name: 'ios',
+  components: { DiscordServerLink }
 };
 </script>

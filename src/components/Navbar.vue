@@ -9,7 +9,7 @@
     <v-btn to="/translators" depressed>Registered Translators</v-btn>
     <v-btn v-if="admin" to="/applications" depressed>Verified Translator Applications</v-btn>
 
-    <v-spacer/>
+    <v-spacer />
 
     <div v-if="isLoggedIn">
       <v-btn outlined color="error" @click="logout">

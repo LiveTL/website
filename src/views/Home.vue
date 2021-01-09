@@ -9,8 +9,8 @@
         <h3>Get live translations for YouTube streams, crowdsourced from multilingual viewers!</h3>
       </v-row>
 
-      <br/>
-      <br/>
+      <br />
+      <br />
 
       <v-row justify="center">
         <h2>Download</h2>
@@ -19,7 +19,7 @@
       <v-row justify="center">
         <v-col xs="2" sm="4" md="3" lg="2" v-for="store in stores" :key="store.link" align-self="center">
           <a :href="store.link" target="_blank">
-            <v-img :src="getImgUrl(store.image)"/>
+            <v-img :src="getImgUrl(store.image)" />
           </a>
         </v-col>
 
@@ -27,7 +27,7 @@
         <v-col xs="2" sm="4" md="3" lg="2" align-self="center">
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-              <v-img :src="getImgUrl('store-images/install-safari.svg')" v-bind="attrs" v-on="on"/>
+              <v-img :src="getImgUrl('store-images/install-safari.svg')" v-bind="attrs" v-on="on" />
             </template>
             <span>Coming Soon&#8482;!</span>
           </v-tooltip>
@@ -38,7 +38,7 @@
       <v-row justify="center">
         <v-col md="9" lg="8">
           <v-carousel v-model="showcase" hide-delimiters>
-            <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="getImgUrl(image)"/>
+            <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="getImgUrl(image)" />
           </v-carousel>
         </v-col>
       </v-row>
