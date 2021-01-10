@@ -9,7 +9,7 @@
       </div>
 
       <v-col cols="12" class="text-center">
-        Copyright &copy; 2020 - {{ new Date().getFullYear() }} <a href="https://github.com/orgs/LiveTL/people"
+        &copy; 2020 - {{ new Date().getFullYear() }} <a href="https://github.com/orgs/LiveTL/people"
                                                                   target="_blank">LiveTL Developers</a>
       </v-col>
     </v-row>

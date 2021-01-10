@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "" */ '@/views/Home')
+    component: () => import(/* webpackChunkName: "home" */ '@/views/Home')
   },
   {
     path: '/translators',
@@ -22,22 +22,22 @@ const routes = [
   {
     path: '/sign-in-error',
     name: 'Sign In Error',
-    component: () => import('@/views/SignInError')
+    component: () => import(/* webpackChunkName: "sign-in-error" */ '@/views/SignInError')
   },
   {
     path: '/ios-note',
     name: 'iOS',
-    component: () => import('@/views/IOS')
+    component: () => import(/* webpackChunkName: "ios-note" */ '@/views/IOS')
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import('@/views/Contact')
+    component: () => import(/* webpackChunkName: "contact" */ '@/views/Contact')
   },
   {
     path: '/faq',
     name: 'FAQ',
-    component: () => import('@/views/FAQ')
+    component: () => import(/* webpackChunkName: "faq" */ '@/views/FAQ')
   }
 ];
 
