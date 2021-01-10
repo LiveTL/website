@@ -27,7 +27,17 @@ const routes = [
   {
     path: '/ios-note',
     name: 'iOS',
-    component: () => import('@/views/IOS.vue')
+    component: () => import('@/views/IOS')
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: () => import('@/views/Contact')
+  },
+  {
+    path: '/faq',
+    name: 'FAQ',
+    component: () => import('@/views/FAQ')
   }
 ];
 
