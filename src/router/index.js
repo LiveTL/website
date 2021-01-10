@@ -33,6 +33,11 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: () => import('@/views/Contact')
+  },
+  {
+    path: '/faq',
+    name: 'FAQ',
+    component: () => import('@/views/FAQ')
   }
 ];
 
