@@ -9,35 +9,35 @@ const routes = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "" */ '@/views/Home')
   },
-  {
-    path: '/translators',
-    name: 'Registered Translator',
-    component: () => import(/* webpackChunkName: "translators" */ '@/views/Translators')
-  },
-  {
-    path: '/applications',
-    name: 'Verified Translator Applications',
-    component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
-  },
+  // {
+  //   path: '/translators',
+  //   name: 'Registered Translator',
+  //   component: () => import(/* webpackChunkName: "translators" */ '@/views/Translators')
+  // },
+  // {
+  //   path: '/applications',
+  //   name: 'Verified Translator Applications',
+  //   component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
+  // },
   {
     path: '/sign-in-error',
     name: 'Sign In Error',
-    component: () => import('@/views/SignInError')
+    component: () => import(/* webpackChunkName: "sign-in-error" */ '@/views/SignInError')
   },
   {
     path: '/ios-note',
     name: 'iOS',
-    component: () => import('@/views/IOS')
+    component: () => import(/* webpackChunkName: "ios-note" */ '@/views/IOS')
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: () => import('@/views/Contact')
+    component: () => import(/* webpackChunkName: "contact" */ '@/views/Contact')
   },
   {
     path: '/faq',
     name: 'FAQ',
-    component: () => import('@/views/FAQ')
+    component: () => import(/* webpackChunkName: "faq" */ '@/views/FAQ')
   }
 ];
 
