@@ -9,16 +9,16 @@ const routes = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "" */ '@/views/Home')
   },
-  // {
-  //   path: '/translators',
-  //   name: 'Registered Translator',
-  //   component: () => import(/* webpackChunkName: "translators" */ '@/views/Translators')
-  // },
-  // {
-  //   path: '/applications',
-  //   name: 'Verified Translator Applications',
-  //   component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
-  // },
+  {
+    path: '/translators',
+    name: 'Registered Translator',
+    component: () => import(/* webpackChunkName: "translators" */ '@/views/Translators')
+  },
+  {
+    path: '/applications',
+    name: 'Verified Translator Applications',
+    component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
+  },
   {
     path: '/sign-in-error',
     name: 'Sign In Error',
