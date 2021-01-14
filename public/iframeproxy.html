@@ -1,0 +1,39 @@
+<iframe id="frame"></iframe>
+<style>
+    #frame {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border: 0;
+    }
+</style>
+<script>
+  getDomain = data => {
+    let a = document.createElement('a');
+    a.href = data;
+    return a.hostname;
+  }
+
+  let frame = document.querySelector('#frame');
+  let searchParams = new URLSearchParams(window.location.search);
+  let url = decodeURIComponent(searchParams.get('url'));
+  let domain = getDomain(url);
+  let param = searchParams.get('param');
+  if (param) {
+    url += `&${param}=${document.domain}`;
+  }
+
+  window.addEventListener('message', d => {
+    let data = JSON.parse(JSON.stringify(d.data));
+    if (d.origin.includes(domain) && parent != window) {
+      // if message came from frame
+      parent.postMessage(data, '*');
+    } else {
+      // message came from parent
+      frame.contentWindow.postMessage(data, '*');
+    }
+  });
+  frame.src = url;
+</script>
