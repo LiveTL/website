@@ -5,45 +5,42 @@
         <v-col md="8">
           <v-row align="center">
             <v-col sm="4">
-              <h1>Registered Translators</h1>
+              <h1 v-text="$t('reg-tl_header')" />
             </v-col>
 
             <v-col sm="4">
               <v-text-field v-model="searchText" single-line prepend-inner-icon="mdi-magnify" hide-details outlined
-                            clearable/>
+                            clearable :label="$t('reg-tl_search_hint')" />
             </v-col>
 
             <v-col sm="2">
-              <v-select :items="languages" item-text="display" item-value="code" v-model="filterLang" label="Language"
-                        hide-details outlined/>
+              <v-select :items="languages" item-text="display" item-value="code" v-model="filterLang" hide-details
+                        outlined :label="$t('reg-tl_lang_dropdown')" />
             </v-col>
 
             <v-col v-if="isLoggedIn && !loading && userAsTranslator() !== undefined" order="10" sm="2"
                    class="text-right">
               <v-btn v-if="userAsTranslator().type === 'user'" color="success" @click="dialog.show = true"
-                     height="56px">
-                Register
-              </v-btn>
+                     height="56px" v-text="$t('reg-tl_register_btn')" />
 
-              <!--              <v-btn v-else-if="userAsTranslator().type === 'registered'" to="/apply" color="success" height="56px">-->
-              <!--                Get Verified-->
-              <!--              </v-btn>-->
+              <!--<v-btn v-else-if="userAsTranslator().type === 'registered'" to="/apply" color="success" height="56px"-->
+              <!--       v-text="$t('reg-tl_verify_btn')" />-->
             </v-col>
 
-            <v-col v-else sm="2"/>
+            <v-col v-else sm="2" />
           </v-row>
         </v-col>
       </v-row>
 
       <v-row justify="center">
         <v-col md="8">
-          <v-divider/>
+          <v-divider />
         </v-col>
       </v-row>
 
       <v-row justify="center">
         <v-col md="8" v-if="loading">
-          <v-progress-linear indeterminate/>
+          <v-progress-linear indeterminate />
         </v-col>
 
         <v-col md="8" v-else-if="countRegisteredTranslators() !== 0">
@@ -52,14 +49,14 @@
               <v-list-item-avatar>
                 <v-avatar color="primary" size="40">
                   <img v-if="translator.picture" :src="translator.picture" alt="pfp">
-                  <span v-else v-text="getInitials(translator.name)"/>
+                  <span v-else v-text="getInitials(translator.name)" />
                 </v-avatar>
               </v-list-item-avatar>
 
               <v-list-item-content>
                 <v-list-item-title>
-                  <span v-text="translator.name"/>
-                  <span class="text--disabled pa-2" v-if="userMatches(translator.email)">(you)</span>
+                  <span v-text="translator.name" />
+                  <span class="text--disabled pa-2" v-if="userMatches(translator.email)" v-text="$t('reg-tl_you_hint')" />
                 </v-list-item-title>
               </v-list-item-content>
 
@@ -71,7 +68,7 @@
         </v-col>
 
         <v-col md="8" v-else>
-          <h3 class="error--text">No translators are registered!</h3>
+          <h3 class="error--text" v-text="$t('reg-tl_no_tlers')" />
         </v-col>
       </v-row>
     </v-container>
@@ -79,34 +76,34 @@
     <v-row justify="end">
       <v-dialog v-model="dialog.show" scrollable max-width="30%">
         <v-card>
-          <v-card-title>Select Languages</v-card-title>
-          <v-card-subtitle>Which languages you know and can translate to/from</v-card-subtitle>
+          <v-card-title v-text="$t('reg-tl_select_langs')" />
+          <v-card-subtitle v-text="$t('reg-tl_select_langs_sub')" />
 
-          <v-divider/>
+          <v-divider />
 
           <v-card-text style="height: 300px">
             <div v-for="language in languages.slice(1)" :key="language.code">
               <v-checkbox v-model="dialog.selectedLanguages" :label="language.display" :value="language.code"
-                          hide-details/>
+                          hide-details />
             </div>
           </v-card-text>
 
-          <v-divider/>
+          <v-divider />
 
           <v-card-actions>
-            <v-spacer/>
-            <v-btn color="success" text @click="register()">Register</v-btn>
+            <v-spacer />
+            <v-btn color="success" text @click="register()" v-text="$t('reg-tl_register_btn')" />
           </v-card-actions>
         </v-card>
       </v-dialog>
     </v-row>
 
     <v-snackbar v-model="errorSnackbar" color="error" right outlined>
-      Please select at least one language!
+      {{ $t('reg-tl_error_snackbar') }}
     </v-snackbar>
 
     <v-snackbar v-model="successSnackbar" color="success" right outlined>
-      Successfully registered as translator!
+      {{ $t('reg-tl_success_snackbar') }}
     </v-snackbar>
   </div>
 </template>
@@ -190,7 +187,7 @@ export default {
       languages: [
         {
           code: 'all',
-          display: 'All Languages'
+          display: 'All Languages' // TODO use TL string
         },
         {
           code: 'en',

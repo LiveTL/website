@@ -6,14 +6,14 @@
       </v-row>
 
       <v-row justify="center">
-        <h3>Get live translations for YouTube streams, crowdsourced from multilingual viewers!</h3>
+        <h3 v-text="$t('home_description')" />
       </v-row>
 
       <br />
       <br />
 
       <v-row justify="center">
-        <h2>Download</h2>
+        <h2 v-text="$t('home_download_header')" />
       </v-row>
 
       <v-row justify="center">

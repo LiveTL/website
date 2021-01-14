@@ -1,7 +1,7 @@
 <template>
   <v-footer padless>
     <v-row justify="center" no-gutters>
-      <div v-for="link in buttons" :key="link.text">
+      <div v-for="link in getButtons()" :key="link.text">
         <v-btn text :to="link.link">
           {{ link.text }}
           <v-icon right v-text="link.icon"></v-icon>
@@ -19,26 +19,26 @@
 <script>
 export default {
   name: 'Footer',
-  data: () => {
-    return {
-      buttons: [
+  methods: {
+    getButtons() {
+      return [
         {
-          text: 'FAQ',
+          text: this.$t('footer_faq_btn'),
           link: '/faq',
           icon: 'mdi-help-circle'
         },
         {
-          text: 'Contact',
+          text: this.$t('footer_contact_btn'),
           link: '/contact',
           icon: 'mdi-email'
         },
         {
-          text: 'Privacy',
+          text: this.$t('footer_privacy_btn'),
           link: '/privacy',
           icon: 'mdi-shield-lock'
         }
-      ]
-    };
+      ];
+    }
   }
 };
 </script>

@@ -1,11 +1,13 @@
 <template>
-  <div v-if="!isLoggedIn">
-    <h1 v-if="!isLoggedIn">You must be logged in to view this page</h1>
-  </div>
+  <v-container>
+    <div v-if="!isLoggedIn">
+      <h1 v-text="$t('login_warning')" />
+    </div>
 
-  <div v-else class="applications">
-    <h1>Applications</h1>
-  </div>
+    <div v-else class="applications">
+      <h1 v-text="$t('applications_header')" />
+    </div>
+  </v-container>
 </template>
 
 <script>

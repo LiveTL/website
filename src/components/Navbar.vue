@@ -5,22 +5,22 @@
       <v-toolbar-title>LiveTL</v-toolbar-title>
     </div>
 
-    <v-btn to="/" depressed>Home</v-btn>
-    <v-btn to="/translators" depressed>Registered Translators</v-btn>
-    <v-btn v-if="admin" to="/applications" depressed>Verified Translator Applications</v-btn>
+    <v-btn to="/" depressed v-text="$t('nav_home_btn')" />
+    <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" />
+    <v-btn v-if="admin" to="/applications" depressed v-text="$t('nav_applications_btn')" />
 
     <v-spacer />
 
     <div v-if="isLoggedIn">
       <v-btn outlined color="error" @click="logout">
-        <span>Logout</span>
+        <span v-text="$t('nav_logout_btn')" />
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
     </div>
 
     <div v-else>
       <v-btn outlined color="success" @click="login">
-        <span>Login</span>
+        <span v-text="$t('nav_login_btn')"></span>
         <v-icon right>mdi-account</v-icon>
       </v-btn>
     </div>
