@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col md="6" offset-md="2">
-          <h1>Contact Us:</h1>
+          <h1>Contact Us</h1>
         </v-col>
       </v-row>
 
