@@ -5,11 +5,13 @@
       <v-toolbar-title>LiveTL</v-toolbar-title>
     </div>
 
-    <v-btn to="/" depressed v-text="$t('nav_home_btn')" />
-    <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" />
-    <v-btn v-if="admin" to="/applications" depressed v-text="$t('nav_applications_btn')" />
+    <v-btn :to="getLangLink('/')" depressed v-text="$t('nav_home_btn')" />
+    <v-btn :to="getLangLink('translators')" depressed v-text="$t('nav_translators_btn')" />
+    <v-btn v-if="admin" :to="getLangLink('applications')" depressed v-text="$t('nav_applications_btn')" />
 
     <v-spacer />
+
+    <language-selector />
 
     <div v-if="isLoggedIn">
       <v-btn outlined color="error" @click="logout">
@@ -29,12 +31,14 @@
 
 <script>
 import { auth, database, firebase } from '@/firebase';
+import LanguageSelector from './LanguageSelector';
 
 const authProvider = new firebase.auth.GoogleAuthProvider();
 authProvider.addScope('https://www.googleapis.com/auth/youtube.readonly');
 
 export default {
   name: 'Navbar',
+  components: { LanguageSelector },
   data: () => {
     return {
       admin: false

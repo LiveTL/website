@@ -3,11 +3,6 @@ module.exports = {
     'vuetify'
   ],
   pluginOptions: {
-    i18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
-      localeDir: 'locales',
-      enableInSFC: false
-    }
+    i18n: {} // doesn't build if I don't have this, but doesn't actually do anything.
   }
 };
