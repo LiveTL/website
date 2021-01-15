@@ -22,17 +22,3 @@ auth.onAuthStateChanged(user => {
     }).$mount('#app');
   }
 });
-
-const utils = {
-  install(Vue, options) {
-    Vue.prototype.getLangLink = (link) => {
-      if (link === '/') {
-        return `/${i18n.locale}/`;
-      } else {
-        return `/${i18n.locale}/${link}`;
-      }
-    };
-  }
-};
-
-Vue.use(utils);
