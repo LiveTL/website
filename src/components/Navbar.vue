@@ -5,9 +5,9 @@
       <v-toolbar-title>LiveTL</v-toolbar-title>
     </div>
 
-    <v-btn :to="getLangLink('/')" depressed v-text="$t('nav_home_btn')" />
-    <v-btn :to="getLangLink('translators')" depressed v-text="$t('nav_translators_btn')" />
-    <v-btn v-if="admin" :to="getLangLink('applications')" depressed v-text="$t('nav_applications_btn')" />
+    <v-btn to="/" depressed v-text="$t('nav_home_btn')" />
+    <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" />
+    <v-btn v-if="admin" to="/applications" depressed v-text="$t('nav_applications_btn')" />
 
     <v-spacer />
 
