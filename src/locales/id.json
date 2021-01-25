@@ -1,10 +1,10 @@
 {
   "nav_home_btn": "Beranda",
   "nav_translators_btn": "Penerjemah Terdaftar",
-  "nav_applications_btn": "Aplikasi Penerjemah Terverifikasi",
+  "nav_applications_btn": "Permohonan Penerjemah Terverifikasi",
   "nav_login_btn": "Masuk",
   "nav_logout_btn": "Keluar",
-  "footer_faq_btn": "Pertanyaan yang Sering Diajukan",
+  "footer_faq_btn": "Tanya Jawab",
   "footer_contact_btn": "Kontak",
   "footer_privacy_btn": "Privasi",
   "home_description": "Dapatkan terjemahan secara langsung untuk siaran Live YouTube, diurun-dayakan dari para penonton!",
@@ -31,8 +31,13 @@
   "reg-tl_register_btn": "Daftar",
   "reg-tl_verify_btn": "Dapatkan Status Terverifikasi",
   "reg-tl_no_tlers": "Tidak ada penerjemah yang terdaftar!",
+  "reg-tl_no_lang_error": "Pilih setidaknya satu bahasa!",
+  "reg-tl_success_snackbar": "Sukses terdaftar sebagai penerjemah!",
+  "applications_header": "Permohonan Sebagai Penerjemah",
   "reg-tl_select_langs": "Pilih Bahasa",
   "reg-tl_select_langs_sub": "Bahasa yang anda tahu dan dapat terjemahkan ke/dari",
   "discord_component": "Server Discord",
-  "github_link": "Github"
+  "github_link": "Github",
+  "login_warning": "Anda harus masuk untuk melihat halaman ini!",
+  "not_authorized_warning": "Anda tidak memiliki ijin untuk mengakses halaman ini!"
 }
