@@ -14,20 +14,20 @@ export default new Vuex.Store({
     },
     addUser(state, val) {
       // check to see if the translator already exists in the store
-      let match = false;
-      for (const translator of state.users) {
-        if (translator.id === val.id) {
-          match = true;
+      for (let i = 0; i < state.users.length; i++) {
+        if (state.users[i].id === val.id) {
+          // update user instead of adding
+          state.users[i] = val;
+          return;
         }
       }
 
-      if (match === false) {
-        state.users.push(val);
-      }
+      // add user
+      state.users.push(val);
     },
     removeUser(state, val) {
       const index = state.users.findIndex(translator => translator.id === val);
-      state.users = state.users.splice(index, index + 1);
+      state.users = state.users.splice(index, 1);
     },
     updateUser(state, val) {
       const index = state.users.findIndex(translator => translator.id === val.id);
