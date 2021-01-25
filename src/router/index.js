@@ -46,6 +46,18 @@ const routes = [
         path: 'faq',
         name: 'FAQ',
         component: () => import(/* webpackChunkName: "faq" */ '@/views/FAQ')
+      },
+      {
+        path: 'privacy',
+        name: 'Privacy Policy',
+        component: () => import(/* webpackChunkName: "faq" */ '@/views/Privacy'),
+        children: [
+          {
+            path: ':platform',
+            name: 'Platform Specific Privacy Policy',
+            component: () => import(/* webpackChunkName: "faq" */ '@/views/Privacy')
+          }
+        ]
       }
     ]
   }
