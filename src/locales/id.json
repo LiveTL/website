@@ -32,6 +32,8 @@
   "reg-tl_verify_btn": "Dapatkan Status Terverifikasi",
   "reg-tl_no_tlers": "Tidak ada penerjemah yang terdaftar!",
   "reg-tl_no_lang_error": "Pilih setidaknya satu bahasa!",
+  "reg-tl_wrong_acc_error": "Anda harus daftar sebagai penerjemah dengan menggunakan akun yang sama yang anda pakai untuk masuk di situs ini!",
+  "reg-tl_must_signin_error": "Anda harus masuk ke akun anda lagi untuk daftar!",
   "reg-tl_success_snackbar": "Sukses terdaftar sebagai penerjemah!",
   "applications_header": "Permohonan Sebagai Penerjemah",
   "reg-tl_select_langs": "Pilih Bahasa",
