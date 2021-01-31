@@ -243,7 +243,7 @@ export default {
           display: 'English'
         },
         {
-          code: 'jp',
+          code: 'ja',
           display: 'Japanese (日本語)'
         },
         {
@@ -255,11 +255,11 @@ export default {
           display: 'Indonesian (bahasa Indonesia)'
         },
         {
-          code: 'kr',
+          code: 'ko',
           display: 'Korean (한국)'
         },
         {
-          code: 'cn',
+          code: 'zh',
           display: 'Chinese (中文)'
         },
         {
