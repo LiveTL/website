@@ -87,17 +87,17 @@
             "Description": "Only retrieve translations that occur after the specified timestamp (in ms)"
           },
           {
-            "Name": "translators",
+            "Name": "require",
             "Type": "string[]",
             "Required": "No",
-            "Restrictions": "Non-empty array of Translator IDs",
+            "Restrictions": "Non-empty array of Translator IDs. Cannot be used alongside exclude parameter",
             "Description": "Only retrieve translations that were made by the specified translators"
           },
           {
             "Name": "exclude",
             "Type": "string[]",
             "Required": "No",
-            "Restrictions": "Non-empty array of Translator IDs",
+            "Restrictions": "Non-empty array of Translator IDs. Cannot be used alongside require parameter",
             "Description": "Only retrieve translations that were not made by the specified translators"
           }
         ]
