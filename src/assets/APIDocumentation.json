@@ -1,0 +1,188 @@
+[
+  {
+    "id": "translations",
+    "name": "Translations",
+    "endpoint": "https://api.livetl.app/translations/{video_id}/",
+    "description": "Add or retrieve translations for a video",
+    "common_query_routes": [
+      {
+        "Name": "video_id",
+        "Type": "string",
+        "Restrictions": "Valid YouTube Video ID",
+        "Description": "The ID of the video you wish to add or retrieve translations for"
+      }
+    ],
+    "routes": [
+      {
+        "id": "AddTranslation",
+        "display": "Add Translation",
+        "call": "POST /translations/{video_id}?[parameters]",
+        "description": "Add translations to a video",
+        "query_parameters": [
+          {
+            "Name": "token",
+            "Type": "string",
+            "Required": "Yes",
+            "Restrictions": "Valid authentication token",
+            "Description": "The token used to associate the request with a translator"
+          }
+        ],
+        "request_body": [
+          {
+            "Name": "language",
+            "Type": "string",
+            "Required": "Yes",
+            "Restrictions": "ISO 639-1 language code",
+            "Description": "The language that has been translated to"
+          },
+          {
+            "Name": "transcription",
+            "Type": "string",
+            "Required": "No",
+            "Restrictions": "None",
+            "Description": "The original content that has been translated"
+          },
+          {
+            "Name": "translation",
+            "Type": "string",
+            "Required": "Yes",
+            "Restrictions": "None",
+            "Description": "The translation text itself"
+          },
+          {
+            "Name": "start",
+            "Type": "float",
+            "Required": "Yes",
+            "Restrictions": "Non-negative number",
+            "Description": "The video timestamp (in ms) the translation should start being displayed at"
+          },
+          {
+            "Name": "end",
+            "Type": "float",
+            "Required": "No",
+            "Restrictions": "Non-negative number, greater than start",
+            "Description": "The video timestamp (in ms) the translation should stop being displayed at"
+          }
+        ]
+      },
+      {
+        "id": "GetTranslations",
+        "display": "Get Translations",
+        "call": "GET /translations/{video_id}/{language_code}?[parameters]",
+        "description": "Retrieve a list of translations",
+        "query_routes": [
+          {
+            "Name": "language_code",
+            "Type": "string",
+            "Restrictions": "ISO 639-1 language code",
+            "Description": "The language to retrieve translations for"
+          }
+        ],
+        "query_parameters": [
+          {
+            "Name": "since",
+            "Type": "float",
+            "Required": "No",
+            "Restrictions": "Non-negative number",
+            "Description": "Only retrieve translations that occur after the specified timestamp (in ms)"
+          },
+          {
+            "Name": "require",
+            "Type": "string[]",
+            "Required": "No",
+            "Restrictions": "Non-empty array of Translator IDs. Cannot be used alongside exclude parameter",
+            "Description": "Only retrieve translations that were made by the specified translators"
+          },
+          {
+            "Name": "exclude",
+            "Type": "string[]",
+            "Required": "No",
+            "Restrictions": "Non-empty array of Translator IDs. Cannot be used alongside require parameter",
+            "Description": "Only retrieve translations that were not made by the specified translators"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "translators",
+    "name": "Translators",
+    "endpoint": "https://api.livetl.app/translators/",
+    "description": "Retrieve information about translators that have registered with LiveTL",
+    "alert": {
+      "type": "warning",
+      "message": "Warning: routes on this endpoint will change as we transition away from using Firebase as a backend"
+    },
+    "routes": [
+      {
+        "id": "GetTranslator",
+        "display": "Get Translator",
+        "call": "GET /translators?[parameters]",
+        "description": "Retrieve a list of all translators",
+        "query_parameters": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Required": "No",
+            "Restrictions": "Valid values are `registered` and `verified`",
+            "Description": "Only retrieve translators of the specified type",
+            "Deprecated Status": ""
+          },
+          {
+            "Name": "source",
+            "Type": "string",
+            "Required": "No",
+            "Restrictions": "Valid values are `fb` and `db`",
+            "Description": "Only retrieve translators from the specified source. Defaults to `fb`",
+            "Deprecated Status": "Pending removal"
+          }
+        ]
+      },
+      {
+        "id": "GetRegistered",
+        "display": "Get Registered Translators",
+        "call": "GET /translators/registered?[parameters]",
+        "description": "Retrieve a list of all translators that have registered with LiveTL",
+        "deprecated": {
+          "on": "14/02/2021",
+          "removed": false,
+          "replacement": "GET /translators?type=registered"
+        },
+        "query_parameters": [
+          {
+            "Name": "source",
+            "Type": "string",
+            "Required": "No",
+            "Restrictions": "Valid values are `fb` and `db`",
+            "Description": "Only retrieve translators from the specified source. Defaults to `fb`",
+            "Deprecated Status": "Pending removal"
+          }
+        ]
+      },
+      {
+        "id": "GetTranslator",
+        "display": "Get Translator by ID",
+        "call": "GET /translators/{translator_id}?[parameters]",
+        "description": "Retrieve a translator matching the specified ID",
+        "query_routes": [
+          {
+            "Name": "translator_id",
+            "Type": "string",
+            "Restrictions": "An existing Translator ID",
+            "Description": "The ID of the translator to retrieve"
+          }
+        ],
+        "query_parameters": [
+          {
+            "Name": "source",
+            "Type": "string",
+            "Required": "No",
+            "Restrictions": "Valid values are `fb` and `db`",
+            "Description": "Specify which source to retrieve translators from",
+            "Deprecated Status": "Pending removal"
+          }
+        ]
+      }
+    ]
+  }
+]

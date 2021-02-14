@@ -16,38 +16,35 @@ const routes = [
         alias: 'home',
         name: 'Home',
         component: () => import(/* webpackChunkName: "home" */ '@/views/Home')
-      },
-      {
+      }, {
         path: 'translators',
         name: 'Registered Translator',
         component: () => import(/* webpackChunkName: "translators" */ '@/views/Translators')
-      },
-      {
+      }, {
         path: 'applications',
         name: 'Verified Translator Applications',
         component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
-      },
-      {
+      }, {
         path: 'sign-in-error',
         name: 'Sign In Error',
         component: () => import(/* webpackChunkName: "sign-in-error" */ '@/views/SignInError')
-      },
-      {
+      }, {
         path: 'ios-note',
         name: 'iOS',
         component: () => import(/* webpackChunkName: "ios-note" */ '@/views/IOS')
-      },
-      {
+      }, {
         path: 'contact',
         name: 'Contact',
         component: () => import(/* webpackChunkName: "contact" */ '@/views/Contact')
-      },
-      {
+      }, {
         path: 'faq',
         name: 'FAQ',
         component: () => import(/* webpackChunkName: "faq" */ '@/views/FAQ')
-      },
-      {
+      }, {
+        path: 'docs/api',
+        name: 'API Documentation',
+        component: () => import(/* webpackChunkName: "apidocs" */ '@/views/APIDocs')
+      }, {
         path: 'privacy',
         name: 'Privacy Policy',
         component: () => import(/* webpackChunkName: "faq" */ '@/views/Privacy'),
