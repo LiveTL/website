@@ -6,9 +6,9 @@
           <div class="text--primary font-weight-medium text-h6">Endpoints</div>
         </template>
         <v-list flat dense>
-          <v-list-item v-for="(display, endpoint) in endpoints" :key="endpoint" :to="getHeaderLinkId(endpoint)"
-                       @click="$vuetify.goTo(getHeaderLinkId(endpoint), scrollOptions)">
-            <v-list-item-content v-text="display" to="test" />
+          <v-list-item v-for="data in $options.apiDocs" :key="data.id" :to="getHeaderLinkId(data.id)"
+                       @click="$vuetify.goTo(getHeaderLinkId(data.id), scrollOptions)">
+            <v-list-item-content v-text="data.name" />
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
@@ -16,12 +16,15 @@
       <v-row>
         <v-col md="6" offset-md="2">
           <h1>API Documentation</h1>
+
+          <!--This is the pure documentation for the various endpoints. You can view examples of calling them-->
+          <!--<router-link to="examples">here</router-link>-->
         </v-col>
       </v-row>
 
       <v-row v-for="data in $options.apiDocs" :key="data.id">
-        <v-col md="8" offset-md="2">
-          <h2 :id="data.id">{{ data.name }} <code v-text="data.endpoint" /></h2>
+        <v-col md="8" offset-md="2" class="endpoint">
+          <h2 :id="data.id">{{ data.name }}: <code v-text="data.endpoint" /></h2>
           <p v-text="data.description" />
 
           <div v-if="data.alert !== undefined">
@@ -36,7 +39,7 @@
           <h3>Routes</h3>
           <ul class="routes">
             <li v-for="route in data.routes" :key="route.id">
-              <code v-text="route.call" />
+              <span>{{ route.display }}: <code v-text="route.call" /></span>
               <p v-text="route.description" />
 
               <div v-if="route.deprecated !== undefined">
@@ -46,9 +49,18 @@
                 </v-alert>
               </div>
 
+              <p>
+                <span class="font-weight-bold">Returns:</span> {{ route.response }}
+              </p>
+
               <div v-if="route.query_routes !== undefined">
                 <h4>Route Values:</h4>
                 <parameters-table :parameters="route.query_routes" />
+              </div>
+
+              <div v-if="route.headers !== undefined">
+                <h4>Query Headers:</h4>
+                <parameters-table :parameters="route.headers" />
               </div>
 
               <div v-if="route.query_parameters !== undefined">
@@ -64,6 +76,8 @@
           </ul>
         </v-col>
       </v-row>
+
+      <h4 align="center">Last updated: 21/02/2021</h4>
     </v-container>
   </div>
 </template>
@@ -100,5 +114,20 @@ export default {
 <style scoped>
 ul.routes > li {
   margin: 0 0 1.5em 0;
+}
+
+ul.routes > li:not(:last-child):after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 80%;
+  margin: 10px auto;
+  background: #efefef;
+}
+
+.endpoint {
+  background-color: #161616;
+  border-radius: .75em;
+  margin-bottom: 2em;
 }
 </style>
