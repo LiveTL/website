@@ -34,6 +34,10 @@ export const availableLanguages = [
   {
     code: 'id',
     display: 'Indonesian (bahasa Indonesia)'
+  },
+  {
+    code: 'ru',
+    display: 'Russian (русский)'
   }
 ];
 const loadedLanguages = ['en']; // our default language that is preloaded
