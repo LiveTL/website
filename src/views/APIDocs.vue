@@ -92,10 +92,6 @@ export default {
   apiDocs,
   data: () => {
     return {
-      endpoints: {
-        translations: 'Translations',
-        translators: 'Translators'
-      },
       scrollOptions: {
         duration: 500,
         offset: 0,
