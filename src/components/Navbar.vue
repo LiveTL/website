@@ -1,11 +1,12 @@
 <template>
   <v-app-bar app color="dark">
-    <div class="d-flex align-center">
+    <div id="branding" class="d-flex align-center">
       <v-img alt="logo" class="shrink mr-2" contain src="@/assets/logo.png" width="40"></v-img>
       <v-toolbar-title>LiveTL</v-toolbar-title>
     </div>
 
     <v-btn to="/home" depressed v-text="$t('nav_home_btn')" />
+    <v-btn to="/hyperchat" depressed>HyperChat</v-btn>
     <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" />
     <v-btn v-if="admin" to="/applications" depressed v-text="$t('nav_applications_btn')" />
 
@@ -46,3 +47,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+div#branding {
+  margin-right: 10px;
+}
+</style>

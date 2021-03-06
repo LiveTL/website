@@ -21,6 +21,10 @@ const routes = [
         name: 'Registered Translator',
         component: () => import(/* webpackChunkName: "translators" */ '@/views/Translators')
       }, {
+        path: 'hyperchat',
+        name: 'HyperChat by LiveTL',
+        component: () => import(/* webpackChunkName: "hyperchat" */ '@/views/Hyperchat')
+      }, {
         path: 'applications',
         name: 'Verified Translator Applications',
         component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
