@@ -6,7 +6,7 @@
       </v-row>
 
       <v-row justify="center">
-        <h3 v-text="$t('home_description')" />
+        <h3>Youtube chat, but it's fast and sleek!</h3>
       </v-row>
 
       <br />
@@ -42,15 +42,18 @@ export default {
     return {
       showcase: 0,
       showcaseImages: [
-        'showcase-images/hyperchat/cover.png'
+        'showcase-images/hyperchat/slide1.png',
+        'showcase-images/hyperchat/slide2.png',
+        'showcase-images/hyperchat/slide3.png',
+        'showcase-images/hyperchat/slide4.png'
       ],
       stores: [
         {
-          link: 'https://chrome.google.com/webstore/detail/livetl-live-translations/moicohcfhhbmmngneghfjfjpdobmmnlg',
+          link: '#',
           image: 'store-images/install-chrome.png'
         },
         {
-          link: 'https://addons.mozilla.org/en-US/firefox/addon/livetl/',
+          link: '#',
           image: 'store-images/install-firefox.png'
         }
       ]
