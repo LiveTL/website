@@ -53,11 +53,10 @@ export default {
     return {
       showcase: 0,
       showcaseImages: [
-        'showcase-images/livetl/cover.png',
-        'showcase-images/livetl/holotools-launcher.png',
-        'showcase-images/livetl/launcher-buttons.png',
-        'showcase-images/livetl/options.png',
-        'showcase-images/livetl/popout.png'
+        'showcase-images/livetl/slide1.png',
+        'showcase-images/livetl/slide2.png',
+        'showcase-images/livetl/slide3.png',
+        'showcase-images/livetl/slide4.png'
       ],
       stores: [
         {
