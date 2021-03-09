@@ -49,11 +49,11 @@ export default {
       ],
       stores: [
         {
-          link: '#',
+          link: 'https://chrome.google.com/webstore/detail/hyperchat-optimized-youtu/naipgebhooiiccifflecbffmnjbabdbh',
           image: 'store-images/install-chrome.png'
         },
         {
-          link: '#',
+          link: 'https://addons.mozilla.org/en-US/firefox/addon/hyperchat/',
           image: 'store-images/install-firefox.png'
         }
       ]
