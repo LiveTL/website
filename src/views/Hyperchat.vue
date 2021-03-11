@@ -27,6 +27,9 @@
       <v-row justify="center">
         <v-col md="9" lg="8">
           <v-carousel v-model="showcase" hide-delimiters>
+            <v-carousel-item>
+              <iframe style="border: 0px; width: 100%; height: 100%;" src="https://www.youtube.com/embed/BVxxiegcOOA" />
+            </v-carousel-item>
             <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="getImgUrl(image)" />
           </v-carousel>
         </v-col>
