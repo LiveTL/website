@@ -40,7 +40,7 @@ export const availableLanguages = [
     display: 'Russian (русский)'
   },
   {
-    code: 'nb_NO',
+    code: 'nb',
     display: 'Norwegian Bokmål'
   }
 ];
