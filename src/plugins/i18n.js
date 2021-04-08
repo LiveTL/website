@@ -38,6 +38,10 @@ export const availableLanguages = [
   {
     code: 'ru',
     display: 'Russian (русский)'
+  },
+  {
+    code: 'nb_NO',
+    display: 'Norwegian Bokmål'
   }
 ];
 const loadedLanguages = ['en']; // our default language that is preloaded
