@@ -37,7 +37,7 @@
     "reg-tl_success_snackbar": "Sukses terdaftar sebagai penerjemah!",
     "applications_header": "Permohonan Sebagai Penerjemah",
     "reg-tl_select_langs": "Pilih Bahasa",
-    "reg-tl_select_langs_sub": "Bahasa yang anda tahu dan dapat terjemahkan ke/dari",
+    "reg-tl_select_langs_sub": "Pilih semua bahasa yang akan anda terjemahkan dari dan ke.",
     "discord_component": "Server Discord",
     "github_link": "Github",
     "login_warning": "Anda harus masuk untuk melihat halaman ini!",
