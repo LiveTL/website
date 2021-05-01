@@ -42,10 +42,10 @@ export default {
     return {
       showcase: 0,
       showcaseImages: [
-        'showcase-images/livetl/slide1.png',
-        'showcase-images/livetl/slide2.png',
-        'showcase-images/livetl/slide3.png',
-        'showcase-images/livetl/slide4.png'
+        'https://raw.githubusercontent.com/LiveTL/LiveTL/develop/img/demo.png',
+        'https://raw.githubusercontent.com/LiveTL/LiveTL/develop/img/filters.png',
+        'https://raw.githubusercontent.com/LiveTL/LiveTL/develop/img/options.png',
+        'https://raw.githubusercontent.com/LiveTL/LiveTL/develop/img/buttons.png'
       ],
       stores: [
         {
