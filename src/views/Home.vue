@@ -27,7 +27,7 @@
       <v-row justify="center">
         <v-col md="9" lg="8">
           <v-carousel v-model="showcase" hide-delimiters>
-            <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="image" />
+            <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="getImgUrl(image)" />
           </v-carousel>
         </v-col>
       </v-row>
@@ -73,10 +73,10 @@ export default {
     }
   },
   methods: {
-    // getImgUrl(img) {
-    //   // https://stackoverflow.com/a/47480286
-    //   return require(`@/assets/${img}`);
-    // }
+    getImgUrl(img) {
+      // https://stackoverflow.com/a/47480286
+      return img.startsWith('http') ? img : require(`@/assets/${img}`);
+    }
   }
 };
 </script>
