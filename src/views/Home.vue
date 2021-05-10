@@ -82,3 +82,9 @@ export default {
   }
 };
 </script>
+
+<style>
+h3 {
+  display: block;
+}
+</style>
