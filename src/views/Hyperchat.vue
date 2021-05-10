@@ -16,12 +16,14 @@
         <h2 v-text="$t('home_download_header')" />
       </v-row>
 
-      <v-row justify="center">
+      <v-row justify="center" style="text-align: center;">
         <v-col xs="2" sm="4" md="3" lg="2" v-for="store in stores" :key="store.link" align-self="center">
           <a :href="store.link" target="_blank">
             <v-img :src="getImgUrl(store.image)" />
           </a>
         </v-col>
+        <h3>Users of Edge, Opera, Brave, Chromium, etc... your browser supports Chrome extensions!</h3>
+        <h3>Download the extension from the Chrome Web Store.</h3>
       </v-row>
 
       <v-row justify="center">
