@@ -22,8 +22,7 @@
             <v-img :src="getImgUrl(store.image)" />
           </a>
         </v-col>
-        <h3>Users of Edge, Opera, Brave, Chromium, etc... your browser supports Chrome extensions!</h3>
-        <h3>Download the extension from the Chrome Web Store.</h3>
+        <h3>Users of Edge, Opera, Brave, Chromium, etc... your browser supports Chrome extensions! Download the extension from the Chrome Web Store.</h3>
       </v-row>
 
       <v-row justify="center">
@@ -82,9 +81,3 @@ export default {
   }
 };
 </script>
-
-<style>
-h3 {
-  display: block;
-}
-</style>
