@@ -14,6 +14,7 @@
         | <a href="https://github.com/LiveTL"
         target="_blank">View on GitHub</a>
         | <a href="https://opencollective.com/livetl" target="_blank">Support the Developers :)</a>
+        | <a href="/discord" target="_blank">Join the LiveTL Discord Server</a>
       </v-col>
     </v-row>
   </v-footer>
