@@ -59,6 +59,12 @@ const routes = [
             component: () => import(/* webpackChunkName: "faq" */ '@/views/Privacy')
           }
         ]
+      }, {
+        path: 'discord',
+        name: 'Discord Server',
+        beforeEnter(to, from, next) {
+          window.location.replace('https://discord.gg/uJrV3tmthg');
+        }
       }
     ]
   }
