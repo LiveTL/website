@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { availableLanguages, i18n, loadLanguageAsync } from '../plugins/i18n';
 import Container from '@/Container';
+import posts from '../js/posts.js';
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,21 @@ const routes = [
         path: 'hyperchat',
         name: 'HyperChat by LiveTL',
         component: () => import(/* webpackChunkName: "hyperchat" */ '@/views/Hyperchat')
+      }, {
+        path: 'news',
+        name: 'LiveTL News',
+        component: () => import(/* webpackChunkName: "news" */ '@/views/News'),
+        children: [{
+          path: 'latest',
+          name: 'Latest Announcement',
+          beforeEnter(to, from, next) {
+            if (posts.length && posts[posts.length - 1].link) {
+              window.location.replace(posts[posts.length - 1].link);
+            } else {
+              next('news');
+            }
+          }
+        }]
       }, {
         path: 'applications',
         name: 'Verified Translator Applications',
