@@ -18,15 +18,16 @@
             text
             color="blue"
             @click="openLink(post.link)"
+            v-if="post.link"
           >
             {{ post.button }}
           </v-btn>
           <v-chip
             class="ma-2"
-            color="red"
-            v-if="error"
+            color="pink"
+            v-if="!post.link"
           >
-            {{ error }}
+            Oops! The link is not active yet. Check back in a bit :)
           </v-chip>
         </v-card-actions>
       </v-card>
@@ -56,7 +57,6 @@ export default {
     },
     openLink(url) {
       if (url) window.location.href = url;
-      else this.error = 'Oops! The link is not active yet.';
     }
   }
 };
