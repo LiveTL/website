@@ -63,7 +63,9 @@ const routes = [
       }, {
         path: 'docs/api',
         name: 'API Documentation',
-        component: () => import(/* webpackChunkName: "apidocs" */ '@/views/APIDocs')
+        beforeEnter(_, __, ___) {
+          window.location.replace('https://docs.livetl.app/api');
+        }
       }, {
         path: 'privacy',
         name: 'Privacy Policy',
@@ -78,7 +80,7 @@ const routes = [
       }, {
         path: 'discord',
         name: 'Discord Server',
-        beforeEnter(to, from, next) {
+        beforeEnter(_, __, ___) {
           window.location.replace('https://discord.gg/uJrV3tmthg');
         }
       }
