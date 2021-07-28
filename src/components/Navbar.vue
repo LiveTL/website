@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { database } from '@/firebase';
 import LanguageSelector from './LanguageSelector';
 import LoginManager from './LoginManager';
 
@@ -32,19 +31,8 @@ export default {
       admin: false
     };
   },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.getUser !== null;
-    }
-  },
   created() {
-    if (this.isLoggedIn === false) {
-      this.admin = false;
-      return;
-    }
-    database.collection('admins').where('email', '==', this.$store.getters.getUser.email).get().then(res => {
-      this.admin = res.empty === false;
-    });
+    this.admin = false; // TODO
   }
 };
 </script>

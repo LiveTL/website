@@ -45,10 +45,6 @@ const routes = [
         name: 'Verified Translator Applications',
         component: () => import(/* webpackChunkName: "applications" */ '@/views/Applications')
       }, {
-        path: 'sign-in-error',
-        name: 'Sign In Error',
-        component: () => import(/* webpackChunkName: "sign-in-error" */ '@/views/SignInError')
-      }, {
         path: 'ios-note',
         name: 'iOS',
         component: () => import(/* webpackChunkName: "ios-note" */ '@/views/IOS')

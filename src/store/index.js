@@ -5,13 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentUser: null,
     users: []
   },
   mutations: {
-    setCurrentUser(state, val) {
-      state.currentUser = val;
-    },
     addUser(state, val) {
       // check to see if the translator already exists in the store
       for (let i = 0; i < state.users.length; i++) {
@@ -37,9 +33,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {},
   getters: {
-    getUser(state) {
-      return state.currentUser;
-    },
     getUsers(state) {
       return state.users;
     }

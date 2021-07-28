@@ -18,7 +18,7 @@
                         outlined :label="$t('reg-tl_lang_dropdown')" />
             </v-col>
 
-            <v-col v-if="isLoggedIn && !loading && userAsTranslator() !== undefined" order="10" sm="2"
+            <v-col v-if="this.$auth.user && !loading && userAsTranslator() !== undefined" order="10" sm="2"
                    class="text-right">
               <v-btn v-if="userAsTranslator().type === 'user'" color="success" @click="dialog.show = true"
                      height="56px" v-text="$t('reg-tl_register_btn')" />
@@ -136,30 +136,22 @@ async function getChannelId(token) {
 
 export default {
   name: 'Translators',
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.getUser !== null;
-    }
-  },
   methods: {
     getInitials(name) {
       const names = name.split(' ');
       // TODO make sure this handles edge cases
       return (names[0].substring(0, 1) + names[names.length - 1].substring(0, 1)).toUpperCase();
     },
-    getUser() {
-      return this.$store.getters.getUser;
-    },
     userMatches(id) {
-      const user = this.getUser();
+      const user = this.$auth.user;
       if (user === null) {
         return false;
       }
 
-      return user.uid === id;
+      return user.sub === id;
     },
     userAsTranslator() {
-      return this.$store.getters.getUsers.find(user => user.id === this.getUser().uid);
+      return this.$store.getters.getUsers.find(user => user.id === this.$auth.user.sub);
     },
     countRegisteredTranslators() {
       return this.$store.getters.getUsers.filter(tl => {

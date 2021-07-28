@@ -3,22 +3,25 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
-import { auth } from './firebase';
 import { i18n } from './plugins/i18n';
+import { Auth0Plugin } from './plugins/auth0';
+import { audience, clientId, domain } from '../auth0-config.json';
+
+Vue.use(Auth0Plugin, {
+  domain,
+  clientId,
+  audience,
+  onRedirectCallback: async(appState) => {
+    await router.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
+  }
+});
 
 Vue.config.productionTip = false;
 
-let app;
-auth.onAuthStateChanged(user => {
-  if (app !== null) {
-    store.commit('setCurrentUser', user);
-
-    app = new Vue({
-      router,
-      store,
-      vuetify,
-      i18n,
-      render: h => h(App)
-    }).$mount('#app');
-  }
-});
+new Vue({
+  router,
+  store,
+  vuetify,
+  i18n,
+  render: h => h(App)
+}).$mount('#app');
