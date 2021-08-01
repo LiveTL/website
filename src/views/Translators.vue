@@ -256,7 +256,7 @@ export default {
         },
         {
           code: 'ko',
-          display: 'Korean (한국)'
+          display: 'Korean (한국어)'
         },
         {
           code: 'zh',
