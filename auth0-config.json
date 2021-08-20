@@ -1,6 +1,6 @@
 {
   "domain": "auth.livetl.app",
   "clientId": "a8RpH1qhSDZCH9IyNZNUgVQRWYshx2P8",
-  "audience": "",
-  "serverUrl": ""
+  "audience": "https://api.livetl.app",
+  "serverUrl": "https://api.livetl.app"
 }
