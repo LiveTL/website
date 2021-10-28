@@ -4,14 +4,17 @@
       <v-img alt="logo" class="shrink mr-2" contain src="@/assets/logo.png" width="40"></v-img>
       <v-toolbar-title>LiveTL</v-toolbar-title>
     </router-link>
-    <v-btn v-if="!mobile" to="/home" depressed v-text="$t('nav_home_btn')" />
-    <v-btn to="/hyperchat" depressed>HyperChat</v-btn>
-    <v-btn to="/news" depressed>News</v-btn>
-    <!-- <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" /> -->
-    <v-btn v-if="admin" to="/applications" depressed v-text="$t('nav_applications_btn')" />
+    <div v-if="!mobile">
+      <v-btn to="/home" depressed v-text="$t('nav_home_btn')" />
+      <v-btn to="/hyperchat" depressed>HyperChat</v-btn>
+      <v-btn to="/news" depressed>News</v-btn>
+      <!-- <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" /> -->
+      <v-btn v-if="admin" to="/applications" depressed v-text="$t('nav_applications_btn')" />
+    </div>
 
     <v-spacer />
 
+    <route-selector v-if="mobile" />
     <language-selector />
 
     <login-manager />
@@ -21,11 +24,12 @@
 <script>
 import { database } from '@/firebase';
 import LanguageSelector from './LanguageSelector';
+import RouteSelector from './RouteSelector';
 import LoginManager from './LoginManager';
 
 export default {
   name: 'Navbar',
-  components: { LoginManager, LanguageSelector },
+  components: { LoginManager, LanguageSelector, RouteSelector },
   data: () => {
     return {
       admin: false
