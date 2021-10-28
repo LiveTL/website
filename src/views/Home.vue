@@ -6,14 +6,14 @@
       </v-row>
 
       <v-row justify="center">
-        <h3 v-text="$t('home_description')" />
+        <h3 v-text="$t('home_description')" align="center"/>
       </v-row>
 
       <br />
       <br />
 
       <v-row justify="center">
-        <h2 v-text="$t('home_download_header')" />
+        <h2 v-text="$t('home_download_header')" align="center" />
       </v-row>
 
       <v-row justify="center" style="text-align: center;">
