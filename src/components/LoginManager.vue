@@ -1,13 +1,13 @@
 <template>
   <div v-if="isLoggedIn">
-    <v-btn outlined color="error" @click="logout">
+    <v-btn outlined color="error" @click="logout" :style="mobileButtonPadding">
       <span v-text="$t('nav_logout_btn')" />
       <v-icon right>mdi-exit-to-app</v-icon>
     </v-btn>
   </div>
 
   <div v-else>
-    <v-btn outlined color="success" @click="login">
+    <v-btn outlined color="success" @click="login" :style="mobileButtonPadding">
       <span v-text="$t('nav_login_btn')"></span>
       <v-icon right>mdi-account</v-icon>
     </v-btn>
@@ -24,6 +24,10 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.getters.getUser !== null;
+    },
+    mobileButtonPadding() {
+      const paddingSize = 16 - (8 * this.$vuetify.breakpoint.xs);
+      return `padding-left: ${paddingSize}px; padding-right: ${paddingSize}px`;
     }
   },
   methods: {
