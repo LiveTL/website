@@ -1,11 +1,10 @@
 <template>
   <v-app-bar app color="dark">
-    <div id="branding" class="d-flex align-center">
+    <router-link to="/home" tag="button" id="branding" class="d-flex align-center">
       <v-img alt="logo" class="shrink mr-2" contain src="@/assets/logo.png" width="40"></v-img>
       <v-toolbar-title>LiveTL</v-toolbar-title>
-    </div>
-
-    <v-btn to="/home" depressed v-text="$t('nav_home_btn')" />
+    </router-link>
+    <v-btn v-if="!mobile" to="/home" depressed v-text="$t('nav_home_btn')" />
     <v-btn to="/hyperchat" depressed>HyperChat</v-btn>
     <v-btn to="/news" depressed>News</v-btn>
     <!-- <v-btn to="/translators" depressed v-text="$t('nav_translators_btn')" /> -->
@@ -35,6 +34,9 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.getters.getUser !== null;
+    },
+    mobile() {
+      return this.$vuetify.breakpoint.sm | this.$vuetify.breakpoint.xs;
     }
   },
   created() {
