@@ -20,11 +20,10 @@
 <script>
 import { database } from '@/firebase';
 import LanguageSelector from './LanguageSelector';
-import LoginManager from './LoginManager';
 
 export default {
   name: 'Navbar',
-  components: { LoginManager, LanguageSelector },
+  components: { LanguageSelector },
   data: () => {
     return {
       admin: false
