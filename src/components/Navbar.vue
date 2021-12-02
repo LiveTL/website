@@ -14,8 +14,6 @@
     <v-spacer />
 
     <language-selector />
-
-    <login-manager />
   </v-app-bar>
 </template>
 
