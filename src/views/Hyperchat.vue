@@ -6,7 +6,7 @@
       </v-row>
 
       <v-row justify="center">
-        <h3>Youtube chat, but it's fast and sleek!</h3>
+        <h3>Optimized YouTube Chat</h3>
       </v-row>
 
       <br />
