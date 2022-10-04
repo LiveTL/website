@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
         
 jobs: 
   build-and-deploy:
@@ -15,7 +16,7 @@ jobs:
       - name: build
         run: npm install && npm run build
       - name: deploy
-        uses: w9jds/firebase-action@v2.0.0
+        uses: w9jds/firebase-action@master
         with: 
           args: deploy --only hosting
         env: 
