@@ -28,9 +28,11 @@
       <v-row justify="center">
         <v-col md="9" lg="8">
           <v-carousel v-model="showcase" hide-delimiters>
-            <!-- <v-carousel-item>
-              <iframe style="border: 0px; width: 100%; height: 100%;" src="https://www.youtube.com/embed/BVxxiegcOOA" />
-            </v-carousel-item> -->
+            <v-carousel-item>
+              <div style="height: 100%; width: 100%; display: flex; justify-content: center;">
+                <iframe style="border: 0px; height: 100%; aspect-ratio: calc(1920/1080);" src="https://www.youtube.com/embed/FU3YWQy_Rfs" />
+              </div>
+            </v-carousel-item>
             <v-carousel-item v-for="image in showcaseImages" :key="image" contain :src="getImgUrl(image)" />
           </v-carousel>
         </v-col>
